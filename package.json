@@ -1,0 +1,42 @@
+{
+  "name": "grunt-multiply-layouts",
+  "description": "Automatic css and js minifying for multiply layouts for Node.js apps",
+  "version": "0.1.0",
+  "homepage": "git://github.com/7bits/grunt-multiply-layouts.git",
+  "author": {
+    "name": "Dmitry Shmatko",
+    "email": "dmitry.shmatko@7bits.it",
+    "url": "http://github.com/zilm13/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/7bits/grunt-multiply-layouts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/7bits/grunt-multiply-layouts/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "git://github.com/7bits/grunt-multiply-layouts.git/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}

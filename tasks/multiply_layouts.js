@@ -76,6 +76,7 @@ var extractFiles = function(fileText, cssDir, jsDir) {
 };
 
 module.exports = function(grunt) {
+  grunt.log.writeln("Begin Multiply Layouts Tasks."['white'].bold);
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
@@ -140,5 +141,4 @@ module.exports = function(grunt) {
       grunt.task.run('cssmin');
     }
   });
-
 };

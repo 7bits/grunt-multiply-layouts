@@ -30,21 +30,31 @@ module.exports = function(grunt) {
 
     // Configuration to be run (and then tested).
     multiply_layouts: {
-      default_options: {
+      development_test: {
         options: {
+          staticSrc: 'test/fixtures/public-dev',
+          staticDst: 'test/fixtures/public',
+          cssDir: 'css',
+          jsDir: 'js'
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        layouts: [{
+          src: 'test/fixtures/views/layouts-dev',
+          dst: 'test/fixtures/views/layouts',
+          mode: 'dev'
+        }]
       },
-      custom_options: {
+      production_test: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!'
+          staticSrc: 'test/fixtures/public-dev',
+          staticDst: 'test/fixtures/public',
+          cssDir: 'css',
+          jsDir: 'js'
         },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        layouts: [{
+          src: 'test/fixtures/views/layouts-dev',
+          dst: 'test/fixtures/views/layouts',
+          mode: 'prod'
+        }]
       }
     },
 

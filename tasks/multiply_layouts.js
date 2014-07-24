@@ -77,6 +77,7 @@ var extractFiles = function(fileText, cssDir, jsDir) {
 
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -85,6 +86,7 @@ module.exports = function(grunt) {
     // Iterate over all specified layouts.
     var options = this.data.options;
     var uglifyOptions = {};
+    var minifyOptions = {};
     if (!grunt.file.isDir(options.staticSrc)) {
       grunt.log.warn('Source directory "' + options.staticSrc + '" is not directory.');
       return false;
@@ -94,41 +96,48 @@ module.exports = function(grunt) {
       grunt.file.recurse(filepath, function callback(abspath, rootdir, subdir, filename) {
         var fileText;
         if (f.mode === 'prod') {
-          console.log('Prod, minifying');
-          console.log(filename);
+          grunt.log.write('Production mode (with minifying) for layout ');
+          grunt.log.writeln(abspath['cyan']);
           fileText = grunt.file.read(abspath);
           var layout = processLayout(fileText, filename, options.cssDir, options.jsDir, options.staticSrc, options.staticDst);
           /**/
           var jsFiles = {};
           jsFiles[layout.jsMin] = layout.js;
           uglifyOptions[abspath] = {files: jsFiles};
+          var cssFiles = {};
+          cssFiles[layout.cssMin] = layout.css;
+          minifyOptions[abspath] = {files: cssFiles};
           /**/
           grunt.file.write(f.dst + "/" + filename, layout.fileOut);
         } else if (f.mode === 'dev') {
-          console.log('Dev, copying only');
+          grunt.log.write('Development mode (copying only) for layout ');
+          grunt.log.writeln(abspath['cyan']);
           fileText = grunt.file.read(abspath);
           var files = extractFiles(fileText, options.cssDir, options.jsDir);
           grunt.file.copy(abspath, f.dst + "/" + filename);
-          console.log("Copying " + abspath + " to " + f.dst);
+          grunt.log.verbose.ok("Copying " + abspath + " to " + f.dst);
           var css = files.css;
           var js = files.js;
           for (var i=0; i<css.length; i++) {
             grunt.file.copy(options.staticSrc + "/" + options.cssDir + "/" + css[i],
               options.staticDst + "/" + options.cssDir + "/" + css[i]);
-            console.log("Copying " + options.staticSrc + css[i] + " to " + options.staticDst);
+            grunt.log.verbose.ok("Copying " + options.staticSrc + css[i] + " to " + options.staticDst);
           }
           for (var j=0; j<js.length; j++) {
             grunt.file.copy(options.staticSrc + "/" + options.jsDir + "/" + js[j],
               options.staticDst + "/" + options.jsDir + "/" + js[j]);
-            console.log("Copying " + options.staticSrc + js[j] + " to " + options.staticDst);
+            grunt.log.verbose.ok("Copying " + options.staticSrc + js[j] + " to " + options.staticDst);
           }
         }
       });
     });
-    if (uglifyOptions != null) {
-      console.log("Running uglify...");
+    if (Object.keys(uglifyOptions).length > 0) {
       grunt.config.set('uglify', uglifyOptions);
       grunt.task.run('uglify');
+    }
+    if (Object.keys(minifyOptions).length > 0) {
+      grunt.config.set('cssmin', minifyOptions);
+      grunt.task.run('cssmin');
     }
   });
 

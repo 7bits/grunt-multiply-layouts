@@ -27,22 +27,56 @@ exports.multiply_layouts = {
     // setup here if necessary
     done();
   },
-  default_options: function(test) {
+  layout_was_not_changed_in_dev: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    var actual = grunt.file.read('test/fixtures/views/layouts-dev/admin-layout.jade');
+    var expected = grunt.file.read('test/fixtures/views/layouts/admin-layout.jade');
+    test.equal(actual, expected, 'Layout should not changed in development mode');
 
     test.done();
   },
-  custom_options: function(test) {
+  css_was_not_changed_in_dev: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+    var actual = grunt.file.read('test/fixtures/public-dev/css/main.css');
+    var expected = grunt.file.read('test/fixtures/public/css/main.css');
+    test.equal(actual, expected, 'Css should not changed in development mode');
 
     test.done();
   },
+  js_was_not_changed_in_dev: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/fixtures/public-dev/js/component/ajax-form.js');
+    var expected = grunt.file.read('test/fixtures/public/js/component/ajax-form.js');
+    test.equal(actual, expected, 'Js should not changed in development mode');
+
+    test.done();
+  },
+  layout_was_not_changed_in_prod: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('test/fixtures/views/layouts-prod/restricted-layout.jade');
+    var expected = grunt.file.read('test/fixtures/views/layouts/restricted-layout.jade');
+    test.notEqual(actual, expected, 'Layout should change in production mode');
+
+    test.done();
+  },
+  css_min_not_empty_in_prod: function(test) {
+    test.expect(1);
+
+    var minFile = grunt.file.read('test/fixtures/public/css/restricted-layout.min.css');
+    test.ok(minFile.length > 0, 'Css min file should be created in production mode');
+
+    test.done();
+  },
+  js_min_not_empty_in_prod: function(test) {
+    test.expect(1);
+
+    var minFile = grunt.file.read('test/fixtures/public/js/restricted-layout.min.js');
+    test.ok(minFile.length > 0, 'Js min file should be created in production mode');
+
+    test.done();
+  }
 };

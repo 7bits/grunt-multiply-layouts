@@ -56,6 +56,23 @@ module.exports = function(grunt) {
           dst: 'test/fixtures/views/layouts',
           mode: 'prod'
         }]
+      },
+      test: {
+        options: {
+          staticSrc: 'test/fixtures/public-dev',
+          staticDst: 'test/fixtures/public',
+          cssDir: 'css',
+          jsDir: 'js'
+        },
+        layouts: [{
+          src: 'test/fixtures/views/layouts-dev',
+          dst: 'test/fixtures/views/layouts',
+          mode: 'dev'
+        }, {
+          src: 'test/fixtures/views/layouts-prod',
+          dst: 'test/fixtures/views/layouts',
+          mode: 'prod'
+        }]
       }
     },
 
@@ -76,7 +93,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'multiply_layouts:dev', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'multiply_layouts:test', 'nodeunit']);
 
   // No tests task
   grunt.registerTask('notest', ['jshint', 'clean', 'multiply_layouts:prod']);

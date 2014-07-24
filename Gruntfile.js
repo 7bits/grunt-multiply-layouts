@@ -79,7 +79,7 @@ module.exports = function(grunt) {
   grunt.registerTask('test', ['clean', 'multiply_layouts:dev', 'nodeunit']);
 
   // No tests task
-  grunt.registerTask('notest', ['jshint', 'clean', 'multiply_layouts:dev']);
+  grunt.registerTask('notest', ['jshint', 'clean', 'multiply_layouts:prod']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

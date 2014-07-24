@@ -8,7 +8,7 @@
 
 'use strict';
 
-var processLayout = function (fileText, filename, cssDir, jsDir) {
+var processLayout = function (fileText, filename, cssDir, jsDir, staticSrc, staticDst) {
   var fileOut = "";
   var lines = fileText.split("\n");
   var css = [];
@@ -24,7 +24,7 @@ var processLayout = function (fileText, filename, cssDir, jsDir) {
     var currentLine = lines[i];
     var cssMatch = cssRegexp.exec(currentLine);
     if (cssMatch) {
-      css.push(cssMatch[3]);
+      css.push(staticSrc + "/" + cssDir + "/" + cssMatch[3]);
       if (!cssFound) {
         fileOut += currentLine.replace(cssRegexp, "$1link(href='/" + cssDir + "/" + cssCombinedFilename + "', rel='stylesheet')") + "\n";
         cssFound = true;
@@ -32,7 +32,7 @@ var processLayout = function (fileText, filename, cssDir, jsDir) {
     } else {
       var jsMatch = jsRegexp.exec(currentLine);
       if (jsMatch) {
-        js.push(jsMatch[3]);
+        js.push(staticSrc + "/" + jsDir + "/" + jsMatch[3]);
         if (!jsFound) {
           fileOut += currentLine.replace(jsRegexp, "$1script(src='/" + jsDir + "/" + jsMinifiedFilename + "', type='text/javascript')") + "\n";
           jsFound = true;
@@ -45,7 +45,9 @@ var processLayout = function (fileText, filename, cssDir, jsDir) {
   return {
     fileOut: fileOut,
     js: js,
-    css: css
+    jsMin: staticDst + "/" + jsDir + "/" + jsMinifiedFilename,
+    css: css,
+    cssMin: staticDst + "/" + cssDir + "/" + cssCombinedFilename
   };
 };
 
@@ -73,15 +75,8 @@ var extractFiles = function(fileText, cssDir, jsDir) {
   };
 };
 
-var deleteContains =  function(grunt, path) {
-  var contains = grunt.file.expand(path);
-  for (var i=0; i<contains.length; i++) {
-    grunt.file.delete(contains[i]);
-    console.log("Removed " + contains[i]);
-  }
-};
-
 module.exports = function(grunt) {
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -89,23 +84,25 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('multiply_layouts', 'Grunt plugin for minifying css and js for several templates in prod, and just copy in development', function() {
     // Iterate over all specified layouts.
     var options = this.data.options;
+    var uglifyOptions = {};
     if (!grunt.file.isDir(options.staticSrc)) {
       grunt.log.warn('Source directory "' + options.staticSrc + '" is not directory.');
       return false;
     }
-    deleteContains(grunt, options.staticDst + "/" + options.cssDir);
-    deleteContains(grunt, options.staticDst + "/" + options.jsDir);
     this.data.layouts.forEach(function(f) {
       var filepath = f.src;
-      deleteContains(grunt, f.dst);
       grunt.file.recurse(filepath, function callback(abspath, rootdir, subdir, filename) {
         var fileText;
         if (f.mode === 'prod') {
           console.log('Prod, minifying');
           console.log(filename);
           fileText = grunt.file.read(abspath);
-          var layout = processLayout(fileText, filename, options.cssDir, options.jsDir);
-
+          var layout = processLayout(fileText, filename, options.cssDir, options.jsDir, options.staticSrc, options.staticDst);
+          /**/
+          var jsFiles = {};
+          jsFiles[layout.jsMin] = layout.js;
+          uglifyOptions[abspath] = {files: jsFiles};
+          /**/
           grunt.file.write(f.dst + "/" + filename, layout.fileOut);
         } else if (f.mode === 'dev') {
           console.log('Dev, copying only');
@@ -128,6 +125,11 @@ module.exports = function(grunt) {
         }
       });
     });
+    if (uglifyOptions != null) {
+      console.log("Running uglify...");
+      grunt.config.set('uglify', uglifyOptions);
+      grunt.task.run('uglify');
+    }
   });
 
 };

@@ -18,13 +18,13 @@ var processLayout = function (fileText, filename, cssDir, jsDir) {
   var jsMinifiedFilename = filenameWoExt + ".min.js";
   var cssFound = false;
   var jsFound = false;
-  var cssRegexp = new RegExp("(.*?)link\(.*?href=['\"](\/?"+ cssDir + ")\/(.*?)['\"].*?\).*?");
-  var jsRegexp = new RegExp("(.*?)script\(.*?src=['\"](\/?"+ jsDir + ")\/(.*?)['\"].*?\).*?");
+  var cssRegexp = new RegExp("(.*?)link\\(.*?href=['\"](\/?"+ cssDir + ")\/(.*?)['\"].*?\\).*?");
+  var jsRegexp = new RegExp("(.*?)script\\(.*?src=['\"](\/?"+ jsDir + ")\/(.*?)['\"].*?\\).*?");
   for (var i=0; i<lines.length; i++) {
     var currentLine = lines[i];
     var cssMatch = cssRegexp.exec(currentLine);
     if (cssMatch) {
-      css.push(cssMatch[4]);
+      css.push(cssMatch[3]);
       if (!cssFound) {
         fileOut += currentLine.replace(cssRegexp, "$1link(href='/" + cssDir + "/" + cssCombinedFilename + "', rel='stylesheet')") + "\n";
         cssFound = true;
@@ -32,7 +32,7 @@ var processLayout = function (fileText, filename, cssDir, jsDir) {
     } else {
       var jsMatch = jsRegexp.exec(currentLine);
       if (jsMatch) {
-        js.push(jsMatch[4]);
+        js.push(jsMatch[3]);
         if (!jsFound) {
           fileOut += currentLine.replace(jsRegexp, "$1script(src='/" + jsDir + "/" + jsMinifiedFilename + "', type='text/javascript')") + "\n";
           jsFound = true;
@@ -53,24 +53,24 @@ var extractFiles = function(fileText, cssDir, jsDir) {
   var lines = fileText.split("\n");
   var css = [];
   var js = [];
-  var cssRegexp = new RegExp("(.*?)link\(.*?href=['\"](\/?"+ cssDir + ")\/(.*?)['\"].*?\).*?");
-  var jsRegexp = new RegExp("(.*?)script\(.*?src=['\"](\/?"+ jsDir + ")\/(.*?)['\"].*?\).*?");
+  var cssRegexp = new RegExp("(.*?)link\\(.*?href=['\"](\/?"+ cssDir + ")\/(.*?)['\"].*?\\).*?");
+  var jsRegexp = new RegExp("(.*?)script\\(.*?src=['\"](\/?"+ jsDir + ")\/(.*?)['\"].*?\\).*?");
   for (var i=0; i<lines.length; i++) {
     var currentLine = lines[i];
     var cssMatch = cssRegexp.exec(currentLine);
     if (cssMatch) {
-      css.push(cssMatch[4]);
+      css.push(cssMatch[3]);
     } else {
       var jsMatch = jsRegexp.exec(currentLine);
       if (jsMatch) {
-        js.push(jsMatch[4]);
+        js.push(jsMatch[3]);
       }
     }
   }
   return {
     css: css,
     js: js
-  }
+  };
 };
 
 var deleteContains =  function(grunt, path) {

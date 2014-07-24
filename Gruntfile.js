@@ -25,12 +25,13 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp']
+      tests: ['tmp'],
+      multiply_layouts: ['test/fixtures/public/css', 'test/fixtures/public/js', 'test/fixtures/views/layouts']
     },
 
     // Configuration to be run (and then tested).
     multiply_layouts: {
-      development_test: {
+      dev: {
         options: {
           staticSrc: 'test/fixtures/public-dev',
           staticDst: 'test/fixtures/public',
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
           mode: 'dev'
         }]
       },
-      production_test: {
+      prod: {
         options: {
           staticSrc: 'test/fixtures/public-dev',
           staticDst: 'test/fixtures/public',
@@ -75,7 +76,10 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'multiply_layouts', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'multiply_layouts:dev', 'nodeunit']);
+
+  // No tests task
+  grunt.registerTask('notest', ['jshint', 'clean', 'multiply_layouts:dev']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

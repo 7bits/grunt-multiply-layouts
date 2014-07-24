@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'PTSerifRegular';
+  src: url("../fonts/PT-Serif/Regular/ptf55f.eot");
+  src: url("../fonts/PT-Serif/Regular/ptf55f.eot?#iefix") format('embedded-opentype'),
+  url("../fonts/PT-Serif/Regular/ptf55f.woff") format('woff'),
+  url("../fonts/PT-Serif/Regular/ptf55f.ttf") format('truetype'),
+  url("../fonts/PT-Serif/Regular/ptf55f.swg#PTSerifRegular") format('svg');
+  font-style:normal;
+  font-variant:normal;
+}
+@font-face {
+  font-family: 'PTSerifBold';
+  src: url("../fonts/PT-Serif/Bold/ptf75f.eot");
+  src: url("../fonts/PT-Serif/Bold/ptf75f.eot?#iefix") format('embedded-opentype'),
+  url("../fonts/PT-Serif/Bold/ptf75f.woff") format('woff'),
+  url("../fonts/PT-Serif/Bold/ptf75f.ttf") format('truetype'),
+  url("../fonts/PT-Serif/Bold/ptf75f.swg#PTSerifBold") format('svg');
+  font-style:normal;
+  font-variant:normal;
+}
+@font-face {
+  font-family: 'PTSerifItalic';
+  src: url("../fonts/PT-Serif/Italic/ptf56f.eot");
+  src: url("../fonts/PT-Serif/Italic/ptf56f.eot?#iefix") format('embedded-opentype'),
+  url("../fonts/PT-Serif/Italic/ptf56f.woff") format('woff'),
+  url("../fonts/PT-Serif/Italic/ptf56f.ttf") format('truetype'),
+  url("../fonts/PT-Serif/Italic/ptf56f.swg#PTSerifItalic") format('svg');
+  font-style:normal;
+  font-variant:normal;
+}
+

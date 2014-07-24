@@ -4,3 +4,6 @@ tmp
 ## IDEA files ##
 .idea
 *.iml
+## Fixtures processing output ##
+test/fixtures/public
+test/fixtures/views/layouts

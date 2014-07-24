@@ -1,0 +1,27 @@
+.ajax-wrapper {
+  position: relative;
+}
+.ajax-wrapper .loader {
+  background-image: url("images/ajax-loader.gif");
+  background-repeat: no-repeat;
+  background-position: center 80px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: auto;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  opacity: 1;
+}
+.ajax-wrapper .loader.transparent {
+  opacity: 0;
+}
+.ajax-wrapper .loader.without-height {
+  height: 0;
+}

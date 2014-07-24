@@ -1,0 +1,261 @@
+ul {
+    list-style-type:disc;
+}
+
+
+/*
+    Title styles
+*/
+h3 {
+    text-align: center;
+    font: 38px PTSerifRegular;
+    color: #444444;
+}
+
+h4{
+    font-family: 'Roboto';
+    font-weight: 400; /*regular*/
+    font-size: 30px;
+    text-align: left;
+    margin-bottom: 0px;
+    color: #444444;
+}
+.list-chair {
+    margin: 8px 0px;
+    text-align: left;
+    font: 30px PTSerifRegular;
+    color: #444444;
+    cursor: pointer;
+    display: inline;
+}
+.list-chair:hover {
+    text-align: left;
+    font: 30px PTSerifRegular;
+    color: #444444;
+    text-decoration: underline;
+}
+/*
+    Text style
+*/
+li {
+    font-size: 28px;
+    color: #d8b37e;
+}
+ol li {
+    font-size: 18px;
+    color: #d8b37e;
+}
+
+p{
+    text-align: left;
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 20px;
+    margin-top: 2px;
+    color: #444444;
+}
+
+p a{
+    color: #A07D63; //определяет цвет ссылок на веб-странице (цвет по умолчанию синий, #0000FF).
+    // A:active — цвет активной ссылки. Цвет ссылки меняется при нажатии на ней кнопки мыши. Цвет по умолчанию красный, #FF0000.
+    //A:visited — цвет уже посещенных ссылок. Цвет по умолчанию фиолетовый, #800080.
+}
+/*
+    начертания
+*/
+p b {
+    text-align: left;
+    font-family: 'Roboto';
+    font-weight: 500; /*medium*/
+    font-size: 20px;
+    color: #444444;
+}
+/*
+    список историй
+*/
+.stories-list__item h3 {
+   margin: 0px 10px;
+   padding: 0;
+   font: 24px PTSerifItalic;
+   color: #5A4866;
+   height: 170px;
+}
+.stories-list__item h4 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font: 15px PTSerifBold;
+    color: #3A3443;
+}
+.stories-list__item p {
+    text-align: center;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 15px;
+    color: #544F5B;
+}
+/*
+    slider
+*/
+.story-slider__info h3 {
+   text-align: left;
+   margin: 0;
+   padding: 0;
+   font: 32px PTSerifItalic;
+   color: #5A4866;
+}
+.story-slider__info h4 {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    font-weight: 400; /*regular*/
+    font-size: 18px;
+    color: #3A3443;
+}
+.story-slider__info p {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 14px;
+    color: #544F5B;
+}
+.story-slider__info a {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    font-weight: 400; /*regular*/
+    font-size: 16px;
+    color: #a07d61;
+    display: inline;
+}
+
+.branches-list__item h3 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font: 21px PTSerifBold;
+    color: #FFF;
+    overflow: hidden;
+}
+
+.branches-list__item p {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 14px;
+    color: #FFF;
+    overflow: hidden;
+}
+
+.all-story__avatar h4 {
+    text-align: center;
+    margin-top: 20px;
+    padding: 0;
+    font: 15px PTSerifBold;
+    color: #3A3443;
+}
+
+.all-story__avatar p {
+    position: relative;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 15px;
+    color: #544F5B;
+}
+
+.all-story__story h4 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    font: 24px PTSerifItalic;
+    color: #5A4866;
+}
+.all-story__story p {
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 17px;
+    color: #3A3443;
+}
+.all-story__story p b {
+    font-family: 'Roboto';
+    font-weight: 500; /*medium*/
+    font-size: 22px;
+    color: #3A3443;
+}
+
+.article h3 {
+    font: 21px PTSerifBold;
+
+}
+.article h4 {
+    font-family: 'Roboto';
+    font-weight: 500; /*medium*/
+    font-size: 26px;
+    color: #3A3443;
+    text-align: center;
+}
+.article h5 {
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 22px;
+    color: #3A3443;
+}
+.article p {
+    margin: 0;
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 18px;
+    color: #3A3443;
+    line-height: 28px;
+}
+.article p b {
+    font-family: 'Roboto';
+    font-weight: 500; /*medium*/
+    font-size: 18px;
+    color: #3A3443;
+
+}
+.article ul {
+    position: relative;
+    margin: 0;
+    margin-left: 20px;
+    list-style-type: disc;
+}
+.article-list__item ul {
+}
+.article li {
+    position: relative;
+    font-size: 28px;
+    color: #d8b37e;
+}
+.article li p {
+    font-family: 'Roboto';
+    font-weight: 300; /*light*/
+    font-size: 16px;
+    color: #3A3443;
+}
+.article li p b {
+    font-family: 'Roboto';
+    font-weight: 500; /*medium*/
+    font-size: 16px;
+    color: #3A3443;
+}
+.article-col {
+    position: relative; margin: 0;
+    margin-top: 30px;
+    padding: 0;
+    width: 448px;
+    float: left;
+}

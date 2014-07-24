@@ -1,0 +1,12 @@
+.red {
+    color: red;
+}
+
+.photo_preview {
+    margin: 10px;
+    width: 296px;
+    height: 296px;
+    border-radius: 200px;
+    background-color: #AAA;
+    display: block;
+}

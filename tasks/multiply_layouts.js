@@ -76,9 +76,11 @@ var extractFiles = function(fileText, cssDir, jsDir) {
 };
 
 module.exports = function(grunt) {
+  require('grunt-contrib-uglify/tasks/uglify')(grunt);
+  require('grunt-contrib-cssmin/tasks/cssmin')(grunt);
   grunt.log.writeln("Begin Multiply Layouts Tasks."['white'].bold);
-  grunt.loadNpmTasks('../node_modules/grunt-contrib-uglify');
-  grunt.loadNpmTasks('../node_modules/grunt-contrib-cssmin');
+//  grunt.loadNpmTasks('../node_modules/grunt-contrib-uglify');
+//  grunt.loadNpmTasks('../node_modules/grunt-contrib-cssmin');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks

@@ -132,7 +132,7 @@ grunt.initConfig({
 #### How `prod` mode modifies layouts?
 Here's simple example. Taking one template from above example, task will replace only css and js files that are in cssDir and jsDir respectively
 
-views/layouts-prod/main-layout.jade
+Source `views/layouts-prod/main-layout.jade`
 ```jade
 doctype html
 html
@@ -157,7 +157,7 @@ html
   body
     block content
 ```
-views/layouts/main-layout.jade
+Destination `views/layouts/main-layout.jade`
 ```jade
 doctype html
 html

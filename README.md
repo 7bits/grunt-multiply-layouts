@@ -105,7 +105,7 @@ No default options setup available at this time.
 #### Custom Options
 In this example, there are 2 layout tasks:  
 1) Multiply Layouts will read Jade layouts from `views/layouts-dev`, extract information about all css and js files used in them, copy css files from `public-dev/css` to `public/css` and js files from `public-dev/js` to `public/js`, but only those linked in Jade layouts. Plus it will copy this Jade layout from `views/layouts-dev` to `views/layouts`.
-2) Multiply Layouts will read Jade layouts from `views/layouts-prod`, replace all css links and js sources to `/css/<layout-filename>.min.css` and `/js/<layout-filename>.min.js` respectively, plus minify css and js files for each layout separately.
+2) Multiply Layouts will read Jade layouts from `views/layouts-prod`, replace all css links and js sources to `/css/<%layout-filename%>.min.css` and `/js/<%layout-filename%>.min.js` respectively, plus minify css and js files for each layout separately.
 
 ```js
 grunt.initConfig({
@@ -179,5 +179,5 @@ html
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-0.1.1 - Minor validation added, plus texts and links were fixed
+0.1.1 - Minor validation added, plus texts and links were fixed  
 0.1.0 - First version, everything works fine but it's written like sh!t

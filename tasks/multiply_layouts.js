@@ -175,6 +175,12 @@ module.exports = function(grunt) {
 
     // Iterate over all specified layout directories
     this.data.layouts.forEach(function(f) {
+
+      // Layout validation
+      if (!grunt.file.isDir(f.src)) {
+        grunt.log.warn('Layouts source directory ' + f.src['cyan'] + ' is not a directory.');
+        return false;
+      }
       // Iterate over layouts in certain directory
       grunt.file.recurse(f.src, function callback(abspath, rootdir, subdir, filename) {
 

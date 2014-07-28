@@ -1,8 +1,8 @@
 {
   "name": "grunt-multiply-layouts",
   "description": "Automatic css and js minifying for multiply layouts for Node.js apps",
-  "version": "0.1.0",
-  "homepage": "git://github.com/7bits/grunt-multiply-layouts.git",
+  "version": "0.1.1",
+  "homepage": "https://github.com/7bits/grunt-multiply-layouts",
   "author": {
     "name": "Dmitry Shmatko",
     "email": "dmitry.shmatko@7bits.it",

@@ -1,12 +1,12 @@
 # grunt-multiply-layouts
 
-> Automatic css and js minifying for multiply jade layouts using Grunt  
+> Automatic css and js minifying for multiply Jade layouts using Grunt
 
-# What this plugin is needed for?
+# Why do I need this plugin?
 
-In my Node.js apps I use several templates with different css and js files included. It can be, say, public and private parts of one site. You don't need javascripts from private part to be loaded in public and vice versa. All standard minify procedures just pick all files in your css/js directory, combine and compress them.
+In my Node.js apps I use several jade templates with different css and js files included. It can be, say, public and private parts of one site. You don't need javascripts from private part to be loaded in public part and vice versa. If you use standard module, it will pick all files in your css/js directory, combine and compress them.
 
-Multiply Layouts for Grunt do it other way: you setup task and choose mode for your layouts: `prod` or `dev`. In `prod` task minifies css and js for every layout separately and creates modified layouts in configured  directory, in `dev` just copying them from development directories to those, your application will use.
+This plugin do it other way: you setup task with one of available modes: `prod` or `dev`. In `prod` task minifies css and js for every layout separately and creates modified layouts, linked to them, in `dev` just copying layouts and js/css files from development directories to those, your application will use.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -58,7 +58,7 @@ Directory from which css and js files will be copied. You should develop them in
 Type: `String`  
 Default value: None  
 
-Directory to which css and js files will be copied. You should use it as directory for static files in your app.
+Directory to which css and js files will be copied. It's static directory in your app.
 
 #### options.cssDir
 Type: `String`  
@@ -84,18 +84,18 @@ Relative path to your jade layouts development directory.
 Type: `String`  
 Default value: None  
 
-Relative path to your jade layouts destination directory. They will be used in other templates from this location.
+Relative path to your jade layouts destination directory. You should use them from this location in your jade templates.
 
 #### layouts.mode
 Type: `String`  
 Default value: None  
 Possible values: `prod` or `dev`  
 
-Production `prod` or development `dev` mode is used. You can use only one of it.  
+Production `prod` or development `dev` mode is used. You should use one of it.
 
-In `dev` mode task will copy template from layouts.src to layouts.dst, plus copy all css and js files used in templates, located in layouts.src from options.staticSrc to options.staticDst.
+In `dev` mode task will copy layouts from layouts.src to layouts.dst, plus copy all css and js files used in layouts, located in layouts.src from options.staticSrc to options.staticDst.
 
-In `prod` mode task will read templates from layouts.src, replace all css links to one with minifed css and all js sources to one with minified js. All css and js files will be minified for each template file separately.
+In `prod` mode task will read layouts from layouts.src, replace all css links to one with minifed css and all js sources to one with minified js. All css and js files will be minified for each layout separately.
 
 ### Usage Examples
 
@@ -104,8 +104,8 @@ No default options setup available at this time.
 
 #### Custom Options
 In this example, there are 2 layout tasks:  
-1) Multiplay Layouts will read jade layouts from `views/layouts-dev`, extract information about all css and js files used in them, copy css files from `public-dev/css` to `public/css` and js files from `public-dev/js` to `public/js`, but only those used in jade layouts. Plus it will copy this jade layout from `views/layouts-dev` to `views/layouts`.  
-2) Multiply Layouts will read jade layouts from `views/layouts-prod`, replace all css links and js sources to `/cssDir/layout-filename.min.css` and `/jsDir/layout-filename.min.js` respectively, plus minify css and js files for each layout separately.  
+1) Multiply Layouts will read Jade layouts from `views/layouts-dev`, extract information about all css and js files used in them, copy css files from `public-dev/css` to `public/css` and js files from `public-dev/js` to `public/js`, but only those linked in Jade layouts. Plus it will copy this Jade layout from `views/layouts-dev` to `views/layouts`.
+2) Multiply Layouts will read Jade layouts from `views/layouts-prod`, replace all css links and js sources to `/css/<layout-filename>.min.css` and `/js/<layout-filename>.min.js` respectively, plus minify css and js files for each layout separately.
 
 ```js
 grunt.initConfig({
@@ -179,4 +179,5 @@ html
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+0.1.1 - Minor validation added, plus texts and links were fixed
 0.1.0 - First version, everything works fine but it's written like sh!t
